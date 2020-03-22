@@ -1,6 +1,7 @@
 package HW2;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Map {
 
@@ -12,6 +13,7 @@ public class Map {
      * @return int - количество одинаковых элементов в HashMap
      */
     public static int countElementsInMap(String lastName, String firstName) {
+
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("Дмитров", "Алексей");
         map.put("Ерохин", "Сергей ");
@@ -25,7 +27,7 @@ public class Map {
 
         int count = 0;
         for (HashMap.Entry<String, String> hashMap : map.entrySet()) {
-            if(hashMap.getKey() == lastName && hashMap.getValue() == firstName) count++;
+            if(hashMap.getKey().trim().equals(lastName) && hashMap.getValue().trim().equals(firstName)) count++;
         }
         return count;
         // Передать фамилию и имя человека в метод
@@ -41,13 +43,25 @@ public class Map {
      * @return - HashMap уже с удаленным элементом
      */
     public static HashMap<String, String> deleteValueFromMap(HashMap<String, String> map, String value) {
+        /**
         for (HashMap.Entry<String, String> ent : map.entrySet()) {
             if (ent.getValue().equals(value)) {
                 map.remove(ent.getKey());
             }
         }
+         */
+        Iterator<java.util.Map.Entry<String, String>> it;
+        java.util.Map.Entry<String, String> entry;
+
+        for (it = map.entrySet().iterator(); it.hasNext();)
+        {
+            entry = it.next();
+            if (entry.getValue().equals(value)) {
+                    it.remove();
+            }
+        }
         return map;
+        }
         // Необходимо наполнить HashMap<String, String> и удалить значение оттуда.
         // Вернуть корректный HashMap, с удаленным элементом
-    }
 }
