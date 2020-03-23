@@ -36,7 +36,6 @@ public class IndividualWork {
      */
     public void bus(double time) {
         time = Math.round(time * 100.0) / 100.0;
-        System.out.println(time);
         if (time<60) {
             if (((time < 8) || (time == 8)) || (((time < 28) || (time == 28)) && (time > 20))) {
                 System.out.println("Комсомольская");
