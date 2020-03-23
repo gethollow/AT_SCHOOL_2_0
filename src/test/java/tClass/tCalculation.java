@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 
 public class tCalculation {
-    private static double value= 14.9;
-    private static int ticketPrice = 99;
+    private static double value= 0.1;
+    private static int ticketPrice = 90;
     private static String Str;
-    private static double percent = 100;
+    private static double percent = 100.0;
 
     public static void testCalculation() throws IOException {
         Calculation.discount(value);
@@ -38,6 +38,7 @@ public class tCalculation {
         Str = Str.replace("Скидка составляет - ","");
         Str = Str.replace("%","");
         Double discount = Double.parseDouble(Str);
+            System.out.println((ticketPrice/percent)*discount);
         System.out.println(Calculation.countTicketPrice(ticketPrice,(ticketPrice/percent)*discount));
         }
         else System.out.println(Calculation.countTicketPrice(ticketPrice,0));

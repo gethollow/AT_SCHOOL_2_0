@@ -5,7 +5,18 @@ public class IndividualWork {
     /**
      * Метод вывода таблицы умножения 10х10
      */
-    public void table() {}
+    public void table() {
+        int string=0;
+        for (int a = 1; a < 11; a++){
+            string=string+1;
+            int column=0;
+            for (int b = 1; b < 11; b++){
+                column=column+1;
+                System.out.print(string*column+" ");
+            }
+            System.out.println("");
+        }
+    }
 
     // Реализовать метод вывода таблицы умножения 10x10 используя циклы
     // Числа разделять пробелами.
@@ -23,7 +34,19 @@ public class IndividualWork {
      * @param time - число, означающее время, прошедшее сначала часа
      * @return string - улица, на которой едет автобус в текущее время
      */
-    public void bus(double time) {}
+    public void bus(double time) {
+        time = Math.round(time * 100.0) / 100.0;
+        System.out.println(time);
+        if (time<60) {
+            if (((time < 8) || (time == 8)) || (((time < 28) || (time == 28)) && (time > 20))) {
+                System.out.println("Комсомольская");
+            } else if (((time < 11) || (time == 11)) || (((time < 20) || (time == 20)) && (time > 17))) {
+                System.out.println("Ленина");
+            } else if ((time < 17) || (time == 17)) {
+                System.out.println("Тимирязевская");
+            } else System.out.println("Автобус стоит на автовокзале");
+        }else System.out.println("Введено больше часа");
+    }
 
 //  Автобус едет по маршруту, вначале каждого часа, в течение 8 минут он проезжает улицу "Комсомольская",
 //  затем в течение следующих 3-х минут проезжает улицу "Ленина",
