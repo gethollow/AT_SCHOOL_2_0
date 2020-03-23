@@ -8,14 +8,14 @@ public class Calculation {
      * @param salary - зарплата
      */
     public static void discount(double salary) {
-        if (salary < 15.0) {
-            System.out.println("Скидка составляет - 15%");
+        if (salary < 5.0) {
+            System.out.println("Скидка составляет - 30%");
         } else if (salary < 12.0) {
             System.out.println("Скидка составляет - 20%");
-        } else if (salary < 5.0) {
-            System.out.println("Скидка составляет - 30%");
+        } else if (salary < 15.0) {
+            System.out.println("Скидка составляет - 15%");
         }
-        System.out.println("Скидки не будет!");
+        else System.out.println("Скидки не будет!");
         // Посчитайте скидку с разными параметрами. Выведите корректную скидку на экран.
     }
 
