@@ -17,7 +17,6 @@ public class tCompareObjects {
 
 
     public static void testCompareObjects(){
-        System.out.println(obj1);
         System.out.println(CompareObjects.compare(object1,object2));
         System.out.println(CompareObjects.compareToString(object1,object2));
         System.out.println(CompareObjects.compareHashCode(object1,object2));
