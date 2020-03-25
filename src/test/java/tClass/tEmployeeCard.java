@@ -1,6 +1,8 @@
 package tClass;
 
 import HW3.EmployeeCard;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 
 public class tEmployeeCard{
@@ -11,6 +13,7 @@ public class tEmployeeCard{
             throw new IllegalArgumentException("Входное значение может быть равно только 0 или 1 !");
         }
     }
+    @Test
     public static void testEmployeeCard(){
         for (int i = 1; i < 5 ; i++){
             String name = "Fedor" + i;
@@ -18,8 +21,17 @@ public class tEmployeeCard{
             double salary = 15.0 + i;
             double effective = 40.0 + i;
             boolean isWoman = intToBoolean(i % 2);
-            EmployeeCard cardi = new EmployeeCard(name,age,salary,isWoman);
-            System.out.println(cardi.toString());
+            testToString(name,age,effective,salary,isWoman);
         }
+
+
+
+    }
+    private static void testToString(String name,int age, double effective, double salary, boolean isWoman){
+        String except_res = "Имя работника - " + name + ". Его возраст - " + age + " лет. Его зарплата - " + salary + " в час. Пол - " + ((isWoman)? "Женский":"Мужской");
+        String actual_res = new EmployeeCard(name,age,effective,salary,isWoman).toString();
+        Assert.assertEquals(actual_res,except_res,"Если фактический результат отличется от ожидаемого");
+        System.out.println(actual_res);
+
     }
 }

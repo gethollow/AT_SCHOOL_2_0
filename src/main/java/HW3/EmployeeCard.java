@@ -26,7 +26,8 @@ public class EmployeeCard {
      */
     private boolean isWoman;
 
-    /**
+    //Нельзя обратиться из класса tEmployeeCard,т.к. у методов мофидикатор default
+    /*
     EmployeeCard(String name, int age, double effective, boolean isWoman) {
         this.name = name;
         this.age = age;
@@ -34,18 +35,22 @@ public class EmployeeCard {
         this.isWoman = isWoman;
     }
 
-    EmployeeCard(String name, double effective, double salary, boolean isWoman) {
+    EmployeeCard(String name, int age, double effective, double salary, boolean isWoman) {
         this.name = name;
+        this.age = age;
         this.salary = salary;
         this.effective = effective;
         this.isWoman = isWoman;
     }
-    */
 
-    public EmployeeCard(String name, int age, double salary, boolean isWoman) {
+     */
+
+
+    public EmployeeCard(String name, int age, double effective, double salary, boolean isWoman) {
         this.name = name;
         this.age = age;
         this.salary = salary;
+        this.effective = effective;
         this.isWoman = isWoman;
     }
 

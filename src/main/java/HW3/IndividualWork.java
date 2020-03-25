@@ -1,5 +1,8 @@
 package HW3;
 
+import java.io.*;
+import java.util.Scanner;
+
 public class IndividualWork {
 
     /**
@@ -34,17 +37,43 @@ public class IndividualWork {
      * @param time - число, означающее время, прошедшее сначала часа
      * @return string - улица, на которой едет автобус в текущее время
      */
-    public void bus(double time) {
+    private void bus(double time) {
         time = Math.round(time * 100.0) / 100.0;
         if (time<60) {
-            if (((time < 8) || (time == 8)) || (((time < 28) || (time == 28)) && (time > 20))) {
+            if ((time > 0 && ((time < 8) || (time == 8))) || (((time < 28) || (time == 28)) && (time > 20))) {
                 System.out.println("Комсомольская");
-            } else if (((time < 11) || (time == 11)) || (((time < 20) || (time == 20)) && (time > 17))) {
+            } else if ((time > 0 && ((time < 11) || (time == 11))) || (((time < 20) || (time == 20)) && (time > 17))) {
                 System.out.println("Ленина");
-            } else if ((time < 17) || (time == 17)) {
+            } else if ((time > 0 && ((time < 17) || (time == 17)))) {
                 System.out.println("Тимирязевская");
             } else System.out.println("Автобус стоит на автовокзале");
         }else System.out.println("Введено больше часа");
+    }
+
+    public String busStation(double station) throws IOException {
+        String Str = null;
+        File file = new File("src\\test\\java\\tClass\\BusStation.txt");
+        PrintStream out = System.out;
+        PrintStream ps = null;
+        try {
+            ps = new PrintStream(file.getAbsoluteFile());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.setOut(ps);
+        bus(station);
+        System.setOut(out);
+
+        //Считывание с файла и запись в переменную Str
+        FileReader fr = new FileReader(file.getAbsoluteFile());
+        Scanner scan = new Scanner(fr);
+        while (scan.hasNextLine()){
+            Str = scan.nextLine();
+        }
+        fr.close();
+
+        //Удаляем ненужные элементы в строке и переводим её в тип double
+        return Str;
     }
 
 //  Автобус едет по маршруту, вначале каждого часа, в течение 8 минут он проезжает улицу "Комсомольская",

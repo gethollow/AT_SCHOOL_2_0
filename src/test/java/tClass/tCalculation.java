@@ -1,46 +1,28 @@
 package tClass;
 
 import HW3.Calculation;
-
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import java.io.*;
-import java.util.Scanner;
+
 
 
 public class tCalculation {
-    private static double value= 4;
-    private static int ticketPrice = 45;
-    private static String Str;
-    private static double percent = 100.0;
 
+
+    @Test
     public static void testCalculation() throws IOException {
-        Calculation.discount(value);
-        //__________________________________________________
-        if (value<15){
-        File file = new File("src\\test\\java\\tClass\\file.txt");
-        PrintStream out = System.out;
-        PrintStream ps = null;
-        try {
-            ps = new PrintStream(file.getAbsoluteFile());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        System.setOut(ps);
-        Calculation.discount(value);
-        System.setOut(out);
-        //_________________________________________________
-        FileReader fr = new FileReader(file.getAbsoluteFile());
-        Scanner scan = new Scanner(fr);
-        while (scan.hasNextLine()){
-            Str = scan.nextLine();
-        }
-        fr.close();
-        //____________________________________________________
-        Str = Str.replace("Скидка составляет - ","");
-        Str = Str.replace("%","");
-        Double discount = Double.parseDouble(Str);
-        System.out.println(" ");
-        System.out.println(Calculation.countTicketPrice(ticketPrice,(ticketPrice/percent)*discount));
-        }
-        else System.out.println(Calculation.countTicketPrice(ticketPrice,0));
+
+        testTicketPrice(10.1,100, 80.0);
+        testTicketPrice(0,50,50.0);
+        testTicketPrice(13,35,29.75);
+        testTicketPrice(15,40,40.0);
+    }
+    private static void testTicketPrice(double value,int ticPrice, double realPrice) throws IOException {
+        String actual_res = String.valueOf((Calculation.countTicketPrice(ticPrice,((ticPrice/100.0)*Calculation.ticketPrice(value)))));
+        String expect_res = String.valueOf(realPrice);
+        Assert.assertEquals(actual_res,expect_res,"Если фактический результат отличется от ожидаемого");
+        System.out.println(expect_res);
+
     }
 }
